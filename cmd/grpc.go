@@ -8,7 +8,7 @@ import (
 	"os/signal"
 )
 
-func StartGrpcServer(listener net.Listener) {
+func startGrpcServer(listener net.Listener) {
 	grpcServer := grpc.NewServer()
 
 	//services.AuthService(grpcServer)
