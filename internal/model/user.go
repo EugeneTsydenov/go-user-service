@@ -5,11 +5,11 @@ import (
 )
 
 type User struct {
-	Id        int64
-	Username  string
-	Password  string
-	Avatar    string
-	createdAt time.Time
+	Id           int64
+	Username     string
+	HashPassword string
+	Avatar       string
+	CreatedAt    time.Time
 }
 
 type NewUser struct {
