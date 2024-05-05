@@ -5,7 +5,7 @@ import "google/protobuf/timestamp.proto";
 
 service UserService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
-  rpc SaveUser(SaveUserRequest) returns (SaveUserResponse) {}
+  rpc Register(RegisterRequest) returns (RegisterResponse) {}
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
@@ -20,18 +20,30 @@ message GetUserResponse {
   string username = 2;
   string avatar = 3;
   google.protobuf.Timestamp created_at = 4;
+  bool success = 5;
 }
 
-message SaveUserRequest {
+message RegisterRequest {
   string username = 1;
   string hash_password = 2;
 }
 
-message SaveUserResponse {
+message RegisterResponse {
   int64 id = 1;
   string username = 2;
   string avatar = 3;
   google.protobuf.Timestamp created_at = 4;
+  bool success = 5;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int64 id = 1;
+  bool success = 2;
 }
 
 message UpdateUserRequest {
@@ -45,6 +57,7 @@ message UpdateUserResponse {
   string username = 2;
   string avatar = 3;
   google.protobuf.Timestamp updated_at = 4;
+  bool success = 5;
 }
 
 message DeleteUserRequest {
