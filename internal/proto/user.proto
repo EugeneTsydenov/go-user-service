@@ -25,15 +25,12 @@ message GetUserResponse {
 
 message RegisterRequest {
   string username = 1;
-  string hash_password = 2;
+  string password = 2;
 }
 
 message RegisterResponse {
-  int64 id = 1;
-  string username = 2;
-  string avatar = 3;
-  google.protobuf.Timestamp created_at = 4;
-  bool success = 5;
+  bool success = 1;
+  string message = 2;
 }
 
 message LoginRequest {

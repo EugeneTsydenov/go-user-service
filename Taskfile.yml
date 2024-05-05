@@ -1,7 +1,7 @@
 version: '3'
 tasks:
   serve:
-    cmd: go run cmd/user-service/main.go cmd/user-service/db.go cmd/user-service/grpc.go cmd/user-service/env.go
+    cmd: go run cmd/user-service/main.go cmd/user-service/grpc.go
   protoc:
     cmd:
       protoc
