@@ -5,8 +5,10 @@ import (
 	"github.com/EugeneTsydenov/go-user-service/internal/model"
 )
 
-func GetUserById(id int64) {
-
+func GetUserById(id int64) (model.User, error) {
+	user := model.User{}
+	result := db.DB.First(&user, "id = ?", id)
+	return user, result.Error
 }
 
 func GetUserByUsername(username string) (model.User, error) {
@@ -25,4 +27,9 @@ func SaveUser(username, hashPassword string) error {
 		return tx.Error
 	}
 	return nil
+}
+
+func DeleteUser(id int64) error {
+	result := db.DB.Delete(&model.User{}, "id = ?", id)
+	return result.Error
 }
