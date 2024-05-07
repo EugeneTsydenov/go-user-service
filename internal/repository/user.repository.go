@@ -38,3 +38,8 @@ func UpdatePassword(userID int64, hashPassword string) error {
 	result := db.DB.Table("users").Where("id = ?", userID).Update("hash_password", hashPassword)
 	return result.Error
 }
+
+func UpdateUser(userID int64, updateData map[string]interface{}) error {
+	result := db.DB.Table("users").Where("id = ?", userID).Updates(updateData)
+	return result.Error
+}

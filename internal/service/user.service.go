@@ -97,6 +97,30 @@ func (s *server) ChangePassword(ctx context.Context, in *proto.ChangePasswordReq
 	return &proto.ChangePasswordResponse{Success: true, Message: "Password successfully updated"}, nil
 }
 
+func (s *server) UpdateUser(ctx context.Context, in *proto.UpdateUserRequest) (*proto.UpdateUserResponse, error) {
+	updateData := make(map[string]interface{})
+
+	// Проверяем, установлено ли поле username
+	if in.Username != "" {
+		updateData["username"] = in.Username
+	}
+
+	// Проверяем, установлено ли поле avatar
+	if in.Avatar != "" {
+		updateData["avatar"] = in.Avatar
+	}
+
+	if len(updateData) > 0 {
+		err := repository.UpdateUser(in.GetId(), updateData)
+		if err != nil {
+			return &proto.UpdateUserResponse{Message: "Something Error", Success: false}, nil
+		}
+		return &proto.UpdateUserResponse{Message: "User successfully updated", Success: true}, nil
+	}
+
+	return &proto.UpdateUserResponse{Message: "Nothing Update", Success: false}, nil
+}
+
 func convertUserDataToProto(userFromDb model.User) *proto.UserData {
 	return &proto.UserData{
 		Id:        userFromDb.Id,
