@@ -77,6 +77,26 @@ func (s *server) DeleteUser(ctx context.Context, in *proto.DeleteUserRequest) (*
 	return &proto.DeleteUserResponse{Success: true, Message: "User successfully deleted"}, nil
 }
 
+func (s *server) ChangePassword(ctx context.Context, in *proto.ChangePasswordRequest) (*proto.ChangePasswordResponse, error) {
+	userFromDB, err := repository.GetUserById(in.GetId())
+	if err != nil {
+		return &proto.ChangePasswordResponse{Success: false, Message: "User not found, you cant change password"}, nil
+	}
+	if !CheckPasswordHash(in.GetOldPassword(), userFromDB.HashPassword) {
+		return &proto.ChangePasswordResponse{Success: false, Message: "Invalid password"}, nil
+	}
+	hashPassword, err := HashPassword(in.NewPassword)
+	if err != nil {
+		return &proto.ChangePasswordResponse{Success: false, Message: "Something Error"}, nil
+	}
+	err = repository.UpdatePassword(in.GetId(), hashPassword)
+	fmt.Println(err)
+	if err != nil {
+		return &proto.ChangePasswordResponse{Success: false, Message: "Something Error"}, nil
+	}
+	return &proto.ChangePasswordResponse{Success: true, Message: "Password successfully updated"}, nil
+}
+
 func convertUserDataToProto(userFromDb model.User) *proto.UserData {
 	return &proto.UserData{
 		Id:        userFromDb.Id,

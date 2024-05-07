@@ -33,3 +33,8 @@ func DeleteUser(id int64) error {
 	result := db.DB.Delete(&model.User{}, "id = ?", id)
 	return result.Error
 }
+
+func UpdatePassword(userID int64, hashPassword string) error {
+	result := db.DB.Table("users").Where("id = ?", userID).Update("hash_password", hashPassword)
+	return result.Error
+}
