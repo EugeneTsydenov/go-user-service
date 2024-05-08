@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"github.com/EugeneTsydenov/go-user-service/internal/domain/entity"
 )
 
@@ -12,6 +11,12 @@ type GetUserOutput struct {
 }
 
 func (s *Service) GetUser(id int64) GetUserOutput {
-	fmt.Println(id, "idshnik")
-	return GetUserOutput{}
+	userFromDb, err := s.repo.GetUserById(id)
+	if err != nil {
+		return GetUserOutput{UserData: nil, Message: "User not found", Success: false}
+	}
+
+	return GetUserOutput{UserData: &entity.UserOutput{
+		Id: userFromDb.Id, Avatar: userFromDb.Avatar, Username: userFromDb.Username, CreatedAt: userFromDb.CreatedAt,
+	}, Success: true, Message: "User successfully retrieved"}
 }

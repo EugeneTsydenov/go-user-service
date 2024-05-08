@@ -2,6 +2,7 @@ package grpc_adapter
 
 import (
 	"context"
+	"github.com/EugeneTsydenov/go-user-service/internal/convert"
 	"github.com/EugeneTsydenov/go-user-service/internal/ports/grpc_port"
 	"github.com/EugeneTsydenov/go-user-service/internal/proto"
 	"github.com/EugeneTsydenov/go-user-service/internal/service"
@@ -19,8 +20,9 @@ func NewImplementation(userService *service.Service) *Implementation {
 }
 
 func (i *Implementation) GetUser(_ context.Context, req *proto.GetUserRequest) (*proto.GetUserResponse, error) {
-	/*userData := i.userService.GetUser(req.GetId())*/
-	return nil, nil
+	res := i.userService.GetUser(req.GetId())
+	return &proto.GetUserResponse{
+		UserData: convert.ConvertUserDataToProto(res.UserData), Success: res.Success, Message: res.Message}, nil
 }
 
 func (i *Implementation) Login(_ context.Context, req *proto.LoginRequest) (*proto.LoginResponse, error) {
