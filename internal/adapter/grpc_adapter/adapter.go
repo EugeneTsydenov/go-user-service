@@ -19,22 +19,17 @@ func NewImplementation(userService *service.Service) *Implementation {
 }
 
 func (i *Implementation) GetUser(_ context.Context, req *proto.GetUserRequest) (*proto.GetUserResponse, error) {
-	err := i.userService.GetUser(req.GetId())
-	if err != nil {
-		return nil, err
-	}
+	/*userData := i.userService.GetUser(req.GetId())*/
 	return nil, nil
 }
 
 func (i *Implementation) Login(_ context.Context, req *proto.LoginRequest) (*proto.LoginResponse, error) {
-	return &proto.LoginResponse{}, nil
+	res := i.userService.Login(req.Username, req.Password)
+	return &proto.LoginResponse{Id: res.Id, Message: res.Message, Success: res.Success}, nil
 }
 
 func (i *Implementation) Register(_ context.Context, req *proto.RegisterRequest) (*proto.RegisterResponse, error) {
-	res, err := i.userService.Register(req.GetUsername(), req.GetPassword())
-	if err != nil {
-		return nil, err
-	}
+	res := i.userService.Register(req.GetUsername(), req.GetPassword())
 	return &proto.RegisterResponse{Message: res.Message, Success: res.Success}, nil
 }
 
