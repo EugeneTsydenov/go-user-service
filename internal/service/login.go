@@ -6,6 +6,6 @@ type LoginOutput struct {
 	id      int64
 }
 
-func (s *Service) Login(username, password string) (*LoginOutput, error) {
-	return nil, nil
+func (s *Service) Login(username, password string) LoginOutput {
+	return LoginOutput{}
 }

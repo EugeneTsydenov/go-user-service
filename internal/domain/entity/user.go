@@ -16,3 +16,10 @@ type NewUser struct {
 	Username string `gorm:"column:username"`
 	Password string `gorm:"column:hash_password"`
 }
+
+type UserOutput struct {
+	Id        int64
+	Username  string
+	Avatar    string
+	CreatedAt time.Time
+}

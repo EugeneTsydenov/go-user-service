@@ -6,12 +6,12 @@ import (
 )
 
 type ServiceInterface interface {
-	GetUser(id int64) error
-	Login(username, password string) (*LoginOutput, error)
-	Register(username, password string) (RegisterOutput, error)
-	DeleteUser(id int64) (*DeleteUserOutput, error)
-	UpdateUser(request *proto.UpdateUserRequest) (*UpdateUserOutput, error)
-	ChangePassword(id int64, newPassword, oldPassword string) (*ChangePasswordOutput, error)
+	GetUser(id int64) GetUserOutput
+	Login(username, password string) LoginOutput
+	Register(username, password string) RegisterOutput
+	DeleteUser(id int64) DeleteUserOutput
+	UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput
+	ChangePassword(id int64, newPassword, oldPassword string) ChangePasswordOutput
 }
 
 var _ ServiceInterface = (*Service)(nil)

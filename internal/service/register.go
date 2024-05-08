@@ -7,18 +7,18 @@ type RegisterOutput struct {
 	Message string
 }
 
-func (s *Service) Register(username, password string) (RegisterOutput, error) {
+func (s *Service) Register(username, password string) RegisterOutput {
 	_, err := s.repo.GetUserByUsername(username)
 	if err == nil {
-		return RegisterOutput{false, "User with this username is already exist!"}, nil
+		return RegisterOutput{false, "User with this username is already exist!"}
 	}
 	hashPassword, err := pkg.HashPassword(password)
 	if err != nil {
-		return RegisterOutput{false, "Something error"}, nil
+		return RegisterOutput{false, "Something error"}
 	}
 	err = s.repo.SaveUser(username, hashPassword)
 	if err != nil {
-		return RegisterOutput{false, "SomethingError"}, nil
+		return RegisterOutput{false, "SomethingError"}
 	}
-	return RegisterOutput{true, "User successfully saved"}, nil
+	return RegisterOutput{true, "User successfully saved"}
 }

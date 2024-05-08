@@ -7,6 +7,6 @@ type UpdateUserOutput struct {
 	message string
 }
 
-func (s *Service) UpdateUser(request *proto.UpdateUserRequest) (*UpdateUserOutput, error) {
-	return nil, nil
+func (s *Service) UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput {
+	return UpdateUserOutput{}
 }

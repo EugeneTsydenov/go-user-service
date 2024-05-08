@@ -1,10 +1,10 @@
 package service
 
 type ChangePasswordOutput struct {
-	success bool
-	message string
+	Success bool
+	Message string
 }
 
-func (s *Service) ChangePassword(id int64, oldPassword, newPassword string) (*ChangePasswordOutput, error) {
-	return nil, nil
+func (s *Service) ChangePassword(id int64, oldPassword, newPassword string) ChangePasswordOutput {
+	return ChangePasswordOutput{}
 }

@@ -1,10 +1,10 @@
 package service
 
 type DeleteUserOutput struct {
-	success bool
-	message string
+	Success bool
+	Message string
 }
 
-func (s *Service) DeleteUser(id int64) (*DeleteUserOutput, error) {
-	return nil, nil
+func (s *Service) DeleteUser(id int64) DeleteUserOutput {
+	return DeleteUserOutput{}
 }
