@@ -31,11 +31,11 @@ func (i *Implementation) Login(_ context.Context, req *proto.LoginRequest) (*pro
 }
 
 func (i *Implementation) Register(_ context.Context, req *proto.RegisterRequest) (*proto.RegisterResponse, error) {
-	register, err := i.userService.Register(req.GetUsername(), req.GetPassword())
+	res, err := i.userService.Register(req.GetUsername(), req.GetPassword())
 	if err != nil {
 		return nil, err
 	}
-	return &proto.RegisterResponse{Message: register.Message, Success: register.Success}, nil
+	return &proto.RegisterResponse{Message: res.Message, Success: res.Success}, nil
 }
 
 func (i *Implementation) UpdateUser(_ context.Context, req *proto.UpdateUserRequest) (*proto.UpdateUserResponse, error) {
