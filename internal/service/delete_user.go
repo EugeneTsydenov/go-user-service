@@ -6,5 +6,9 @@ type DeleteUserOutput struct {
 }
 
 func (s *Service) DeleteUser(id int64) DeleteUserOutput {
-	return DeleteUserOutput{}
+	err := s.repo.DeleteUser(id)
+	if err != nil {
+		return DeleteUserOutput{Success: false, Message: "User cant be delete"}
+	}
+	return DeleteUserOutput{Success: true, Message: "User successfully deleted"}
 }

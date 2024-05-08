@@ -24,7 +24,7 @@ func (i *Implementation) GetUser(_ context.Context, req *proto.GetUserRequest) (
 }
 
 func (i *Implementation) Login(_ context.Context, req *proto.LoginRequest) (*proto.LoginResponse, error) {
-	res := i.userService.Login(req.Username, req.Password)
+	res := i.userService.Login(req.GetUsername(), req.GetPassword())
 	return &proto.LoginResponse{Id: res.Id, Message: res.Message, Success: res.Success}, nil
 }
 
@@ -38,7 +38,8 @@ func (i *Implementation) UpdateUser(_ context.Context, req *proto.UpdateUserRequ
 }
 
 func (i *Implementation) DeleteUser(_ context.Context, req *proto.DeleteUserRequest) (*proto.DeleteUserResponse, error) {
-	return &proto.DeleteUserResponse{}, nil
+	res := i.userService.DeleteUser(req.GetId())
+	return &proto.DeleteUserResponse{Success: res.Success, Message: res.Message}, nil
 }
 
 func (i *Implementation) ChangePassword(_ context.Context, req *proto.ChangePasswordRequest) (*proto.ChangePasswordResponse, error) {
