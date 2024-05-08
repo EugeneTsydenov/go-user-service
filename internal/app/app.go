@@ -3,9 +3,11 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/EugeneTsydenov/go-user-service/cmd/user-service/env"
+	"github.com/EugeneTsydenov/go-user-service/internal/proto"
+	"github.com/EugeneTsydenov/go-user-service/pkg"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 )
@@ -25,14 +27,13 @@ func NewApp(ctx context.Context) (*App, error) {
 }
 
 func (app *App) Serve() error {
-	servicePort := env.GetEnv()["SERVICE_PORT"]
-	fmt.Println(servicePort)
+	servicePort := pkg.GetEnv()["SERVICE_PORT"]
 	listener, err := net.Listen("tcp", servicePort)
-	fmt.Println(err)
 	if err != nil {
 		log.Fatalf("Error listening on port %s", servicePort)
 	}
 	grpcServer := app.GrpcServer()
+	fmt.Printf("Grpc server listening on port %s", servicePort)
 	err = grpcServer.Serve(listener)
 	if err != nil {
 		return err
@@ -62,6 +63,8 @@ func (app *App) initGrpcServer(_ context.Context) error {
 	if err != nil {
 		return err
 	}
+	reflection.Register(app.grpcServer)
+	proto.RegisterUserServiceServer(app.grpcServer, app.serviceProvider.UserImplementation())
 	return nil
 }
 
