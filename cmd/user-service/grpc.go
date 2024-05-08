@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/EugeneTsydenov/go-user-service/internal/service"
 	"google.golang.org/grpc"
 	"log"
 	"net"
@@ -11,9 +12,8 @@ import (
 func startGrpcServer(listener net.Listener) {
 	grpcServer := grpc.NewServer()
 
-	//services.AuthService(grpcServer)
+	service.UserService(grpcServer)
 
-	// Запускаем gRPC сервер в отдельной горутине
 	go func() {
 		if err := grpcServer.Serve(listener); err != nil {
 			log.Fatalf("failed to serve: %v", err)
