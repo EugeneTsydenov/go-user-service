@@ -17,6 +17,6 @@ func (s *Service) GetUser(id int64) GetUserOutput {
 	}
 
 	return GetUserOutput{UserData: &entity.UserOutput{
-		Id: userFromDb.Id, Avatar: userFromDb.Avatar, Username: userFromDb.Username, CreatedAt: userFromDb.CreatedAt,
+		Id: userFromDb.ID, Avatar: userFromDb.Avatar, Username: userFromDb.Username, CreatedAt: userFromDb.CreatedAt,
 	}, Success: true, Message: "User successfully retrieved"}
 }

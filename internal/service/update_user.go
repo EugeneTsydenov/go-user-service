@@ -1,12 +1,46 @@
 package service
 
-import "github.com/EugeneTsydenov/go-user-service/internal/proto"
+import (
+	"github.com/EugeneTsydenov/go-user-service/internal/domain/entity"
+	"github.com/EugeneTsydenov/go-user-service/internal/proto"
+	"reflect"
+)
 
 type UpdateUserOutput struct {
-	success bool
-	message string
+	UpdatedUser *entity.UserOutput
+	Success     bool
+	Message     string
 }
 
 func (s *Service) UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput {
-	return UpdateUserOutput{}
+	val := reflect.ValueOf(request).Elem()
+	typ := val.Type()
+	updateData := make(map[string]interface{})
+
+	for i := 0; i < val.NumField(); i++ {
+		fieldValue := val.Field(i)
+		fieldName := typ.Field(i).Name
+		if fieldName == "sizeCache" || fieldName == "unknownFields" || fieldName == "state" || fieldName == "Id" {
+			continue
+		}
+		if fieldValue.Interface() == "" {
+			continue
+		}
+		updateData[fieldName] = fieldValue.Interface()
+	}
+
+	updatedData, err := s.repo.UpdateUser(request.GetId(), updateData)
+	if err != nil {
+		return UpdateUserOutput{Success: false, Message: "Something error", UpdatedUser: nil}
+	}
+	return UpdateUserOutput{
+		Success: true,
+		Message: "Successfully updated user data",
+		UpdatedUser: &entity.UserOutput{
+			Id:        updatedData.ID,
+			Username:  updatedData.Username,
+			Avatar:    updatedData.Avatar,
+			CreatedAt: updatedData.CreatedAt,
+		},
+	}
 }

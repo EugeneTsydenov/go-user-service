@@ -57,6 +57,7 @@ message UpdateUserRequest {
 }
 
 message UpdateUserResponse {
+  UserData updatedUserData = 1;
   string message = 6;
   bool success = 5;
 }

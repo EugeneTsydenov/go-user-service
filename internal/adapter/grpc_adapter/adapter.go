@@ -36,7 +36,12 @@ func (i *Implementation) Register(_ context.Context, req *proto.RegisterRequest)
 }
 
 func (i *Implementation) UpdateUser(_ context.Context, req *proto.UpdateUserRequest) (*proto.UpdateUserResponse, error) {
-	return &proto.UpdateUserResponse{}, nil
+	res := i.userService.UpdateUser(req)
+	return &proto.UpdateUserResponse{
+		Message:         res.Message,
+		Success:         res.Success,
+		UpdatedUserData: convert.ConvertUserDataToProto(res.UpdatedUser),
+	}, nil
 }
 
 func (i *Implementation) DeleteUser(_ context.Context, req *proto.DeleteUserRequest) (*proto.DeleteUserResponse, error) {

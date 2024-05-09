@@ -5,11 +5,11 @@ import (
 )
 
 type User struct {
-	Id           int64
-	Username     string
-	HashPassword string
-	Avatar       string
-	CreatedAt    time.Time
+	ID           int64     `gorm:"column:id;primary_key"`
+	Username     string    `gorm:"column:username"`
+	HashPassword string    `gorm:"column:hash_password"`
+	Avatar       string    `gorm:"column:avatar"`
+	CreatedAt    time.Time `gorm:"column:created_at"`
 }
 
 type NewUser struct {

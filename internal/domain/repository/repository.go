@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"fmt"
 	"github.com/EugeneTsydenov/go-user-service/internal/domain/entity"
 	"gorm.io/gorm"
 )
@@ -11,6 +12,7 @@ type RepoInterface interface {
 	SaveUser(username, hashPassword string) error
 	DeleteUser(id int64) error
 	UpdatePassword(id int64, newPassword string) error
+	UpdateUser(userID int64, updateData map[string]interface{}) (*entity.User, error)
 }
 
 var _ RepoInterface = (*Repository)(nil)
@@ -57,7 +59,9 @@ func (repo *Repository) UpdatePassword(id int64, hashPassword string) error {
 	return result.Error
 }
 
-func (repo *Repository) UpdateUser(userID int64, updateData map[string]interface{}) error {
-	result := repo.db.Table("users").Where("id = ?", userID).Updates(updateData)
-	return result.Error
+func (repo *Repository) UpdateUser(userID int64, updateData map[string]interface{}) (*entity.User, error) {
+	updatedUser := entity.User{}
+	result := repo.db.Model(&updatedUser).Where("id = ?", userID).Debug().Updates(updateData).First(&updatedUser)
+	fmt.Println(result.Error)
+	return &updatedUser, result.Error
 }

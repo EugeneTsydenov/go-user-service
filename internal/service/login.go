@@ -20,5 +20,5 @@ func (s *Service) Login(username, password string) LoginOutput {
 		return LoginOutput{Success: false, Message: "Invalid password", Id: -1}
 	}
 
-	return LoginOutput{Success: true, Id: userFromDB.Id, Message: "Login success"}
+	return LoginOutput{Success: true, Id: userFromDB.ID, Message: "Login success"}
 }
