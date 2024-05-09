@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"fmt"
 	"github.com/EugeneTsydenov/go-user-service/internal/domain/entity"
 	"gorm.io/gorm"
 )
@@ -61,7 +60,6 @@ func (repo *Repository) UpdatePassword(id int64, hashPassword string) error {
 
 func (repo *Repository) UpdateUser(userID int64, updateData map[string]interface{}) (*entity.User, error) {
 	updatedUser := entity.User{}
-	result := repo.db.Model(&updatedUser).Where("id = ?", userID).Debug().Updates(updateData).First(&updatedUser)
-	fmt.Println(result.Error)
+	result := repo.db.Model(&updatedUser).Where("id = ?", userID).Updates(updateData).First(&updatedUser)
 	return &updatedUser, result.Error
 }
