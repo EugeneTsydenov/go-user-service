@@ -8,7 +8,7 @@ import (
 
 type UpdateUserOutput struct {
 	UpdatedUser *entity.UserOutput
-	Success     bool
+	Code        int32
 	Message     string
 }
 
@@ -31,10 +31,10 @@ func (s *Service) UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput 
 
 	updatedData, err := s.repo.UpdateUser(request.GetId(), updateData)
 	if err != nil {
-		return UpdateUserOutput{Success: false, Message: "Something error", UpdatedUser: nil}
+		return UpdateUserOutput{Code: 500, Message: "Something error", UpdatedUser: nil}
 	}
 	return UpdateUserOutput{
-		Success: true,
+		Code:    200,
 		Message: "Successfully updated user data",
 		UpdatedUser: &entity.UserOutput{
 			Id:        updatedData.ID,
