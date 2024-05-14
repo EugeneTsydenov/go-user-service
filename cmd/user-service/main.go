@@ -1,27 +1,20 @@
 package main
 
 import (
-	"fmt"
-	"github.com/EugeneTsydenov/go-user-service/cmd/user-service/db"
-	"github.com/EugeneTsydenov/go-user-service/cmd/user-service/env"
-	"log"
-	"net"
+	"context"
+	"github.com/EugeneTsydenov/go-user-service/internal/app"
 )
 
 func main() {
-	env.InitEnv()
-	db.InitDB()
-	run()
-}
+	ctx := context.Background()
 
-func run() {
-	servicePort := env.GetEnv()["SERVICE_PORT"]
-	fmt.Println(servicePort)
-	listener, err := net.Listen("tcp", servicePort)
-	fmt.Println(err)
+	newApp, err := app.NewApp(ctx)
 	if err != nil {
-		log.Fatalf("Error listening on port %s", servicePort)
+		panic(err)
 	}
-	fmt.Println("Serving gRPC on port", servicePort)
-	startGrpcServer(listener)
+
+	err = newApp.Serve()
+	if err != nil {
+		panic(err)
+	}
 }
