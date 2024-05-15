@@ -760,7 +760,7 @@ func (x *DeleteUserResponse) GetMessage() string {
 	return ""
 }
 
-type ChangePasswordRequest struct {
+type UpdatePasswordRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -769,8 +769,8 @@ type ChangePasswordRequest struct {
 	Passwords *Passwords `protobuf:"bytes,4,opt,name=passwords,proto3" json:"passwords,omitempty"`
 }
 
-func (x *ChangePasswordRequest) Reset() {
-	*x = ChangePasswordRequest{}
+func (x *UpdatePasswordRequest) Reset() {
+	*x = UpdatePasswordRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_internal_proto_user_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -778,13 +778,13 @@ func (x *ChangePasswordRequest) Reset() {
 	}
 }
 
-func (x *ChangePasswordRequest) String() string {
+func (x *UpdatePasswordRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChangePasswordRequest) ProtoMessage() {}
+func (*UpdatePasswordRequest) ProtoMessage() {}
 
-func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
+func (x *UpdatePasswordRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_internal_proto_user_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -796,26 +796,26 @@ func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChangePasswordRequest.ProtoReflect.Descriptor instead.
-func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePasswordRequest.ProtoReflect.Descriptor instead.
+func (*UpdatePasswordRequest) Descriptor() ([]byte, []int) {
 	return file_internal_proto_user_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *ChangePasswordRequest) GetId() int64 {
+func (x *UpdatePasswordRequest) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *ChangePasswordRequest) GetPasswords() *Passwords {
+func (x *UpdatePasswordRequest) GetPasswords() *Passwords {
 	if x != nil {
 		return x.Passwords
 	}
 	return nil
 }
 
-type ChangePasswordResponse struct {
+type UpdatePasswordResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -824,8 +824,8 @@ type ChangePasswordResponse struct {
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 }
 
-func (x *ChangePasswordResponse) Reset() {
-	*x = ChangePasswordResponse{}
+func (x *UpdatePasswordResponse) Reset() {
+	*x = UpdatePasswordResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_internal_proto_user_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -833,13 +833,13 @@ func (x *ChangePasswordResponse) Reset() {
 	}
 }
 
-func (x *ChangePasswordResponse) String() string {
+func (x *UpdatePasswordResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChangePasswordResponse) ProtoMessage() {}
+func (*UpdatePasswordResponse) ProtoMessage() {}
 
-func (x *ChangePasswordResponse) ProtoReflect() protoreflect.Message {
+func (x *UpdatePasswordResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_internal_proto_user_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -851,19 +851,19 @@ func (x *ChangePasswordResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChangePasswordResponse.ProtoReflect.Descriptor instead.
-func (*ChangePasswordResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdatePasswordResponse.ProtoReflect.Descriptor instead.
+func (*UpdatePasswordResponse) Descriptor() ([]byte, []int) {
 	return file_internal_proto_user_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *ChangePasswordResponse) GetCode() int32 {
+func (x *UpdatePasswordResponse) GetCode() int32 {
 	if x != nil {
 		return x.Code
 	}
 	return 0
 }
 
-func (x *ChangePasswordResponse) GetMessage() string {
+func (x *UpdatePasswordResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -943,13 +943,13 @@ var file_internal_proto_user_proto_rawDesc = []byte{
 	0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
 	0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
 	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x22, 0x57, 0x0a, 0x15, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x22, 0x57, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
 	0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x2e, 0x0a, 0x09, 0x70, 0x61, 0x73,
 	0x73, 0x77, 0x6f, 0x72, 0x64, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x73, 0x52, 0x09,
-	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x73, 0x22, 0x46, 0x0a, 0x16, 0x43, 0x68, 0x61,
-	0x6e, 0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x73, 0x22, 0x46, 0x0a, 0x16, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x05, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
 	0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67,
@@ -970,11 +970,11 @@ var file_internal_proto_user_proto_rawDesc = []byte{
 	0x18, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73,
 	0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4f, 0x0a, 0x0e, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x4f, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
 	0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x1c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2e, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x43,
-	0x68, 0x61, 0x6e, 0x67, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73,
+	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73,
 	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x34, 0x0a, 0x05, 0x4c, 0x6f, 0x67, 0x69, 0x6e,
 	0x12, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x4c, 0x6f,
@@ -1012,8 +1012,8 @@ var file_internal_proto_user_proto_goTypes = []interface{}{
 	(*UpdateUserResponse)(nil),     // 10: proto.UpdateUserResponse
 	(*DeleteUserRequest)(nil),      // 11: proto.DeleteUserRequest
 	(*DeleteUserResponse)(nil),     // 12: proto.DeleteUserResponse
-	(*ChangePasswordRequest)(nil),  // 13: proto.ChangePasswordRequest
-	(*ChangePasswordResponse)(nil), // 14: proto.ChangePasswordResponse
+	(*UpdatePasswordRequest)(nil),  // 13: proto.UpdatePasswordRequest
+	(*UpdatePasswordResponse)(nil), // 14: proto.UpdatePasswordResponse
 	(*timestamppb.Timestamp)(nil),  // 15: google.protobuf.Timestamp
 }
 var file_internal_proto_user_proto_depIdxs = []int32{
@@ -1021,18 +1021,18 @@ var file_internal_proto_user_proto_depIdxs = []int32{
 	1,  // 1: proto.GetUserResponse.userData:type_name -> proto.UserData
 	2,  // 2: proto.UpdateUserRequest.updatedField:type_name -> proto.UpdatedField
 	1,  // 3: proto.UpdateUserResponse.updatedUserData:type_name -> proto.UserData
-	3,  // 4: proto.ChangePasswordRequest.passwords:type_name -> proto.Passwords
+	3,  // 4: proto.UpdatePasswordRequest.passwords:type_name -> proto.Passwords
 	0,  // 5: proto.UserService.GetUser:input_type -> proto.GetUserRequest
 	5,  // 6: proto.UserService.Register:input_type -> proto.RegisterRequest
 	9,  // 7: proto.UserService.UpdateUser:input_type -> proto.UpdateUserRequest
 	11, // 8: proto.UserService.DeleteUser:input_type -> proto.DeleteUserRequest
-	13, // 9: proto.UserService.ChangePassword:input_type -> proto.ChangePasswordRequest
+	13, // 9: proto.UserService.UpdatePassword:input_type -> proto.UpdatePasswordRequest
 	7,  // 10: proto.UserService.Login:input_type -> proto.LoginRequest
 	4,  // 11: proto.UserService.GetUser:output_type -> proto.GetUserResponse
 	6,  // 12: proto.UserService.Register:output_type -> proto.RegisterResponse
 	10, // 13: proto.UserService.UpdateUser:output_type -> proto.UpdateUserResponse
 	12, // 14: proto.UserService.DeleteUser:output_type -> proto.DeleteUserResponse
-	14, // 15: proto.UserService.ChangePassword:output_type -> proto.ChangePasswordResponse
+	14, // 15: proto.UserService.UpdatePassword:output_type -> proto.UpdatePasswordResponse
 	8,  // 16: proto.UserService.Login:output_type -> proto.LoginResponse
 	11, // [11:17] is the sub-list for method output_type
 	5,  // [5:11] is the sub-list for method input_type
@@ -1204,7 +1204,7 @@ func file_internal_proto_user_proto_init() {
 			}
 		}
 		file_internal_proto_user_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangePasswordRequest); i {
+			switch v := v.(*UpdatePasswordRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1216,7 +1216,7 @@ func file_internal_proto_user_proto_init() {
 			}
 		}
 		file_internal_proto_user_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangePasswordResponse); i {
+			switch v := v.(*UpdatePasswordResponse); i {
 			case 0:
 				return &v.state
 			case 1:

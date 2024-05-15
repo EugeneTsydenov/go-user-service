@@ -10,6 +10,6 @@ type Port interface {
 	Login(ctx context.Context, req *proto.LoginRequest) (*proto.LoginResponse, error)
 	Register(ctx context.Context, req *proto.RegisterRequest) (*proto.RegisterResponse, error)
 	UpdateUser(ctx context.Context, req *proto.UpdateUserRequest) (*proto.UpdateUserResponse, error)
-	ChangePassword(ctx context.Context, req *proto.ChangePasswordRequest) (*proto.ChangePasswordResponse, error)
+	UpdatePassword(ctx context.Context, req *proto.UpdatePasswordRequest) (*proto.UpdatePasswordResponse, error)
 	DeleteUser(ctx context.Context, req *proto.DeleteUserRequest) (*proto.DeleteUserResponse, error)
 }

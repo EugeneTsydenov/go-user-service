@@ -26,7 +26,7 @@ type UserServiceClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
-	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
+	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
@@ -74,9 +74,9 @@ func (c *userServiceClient) DeleteUser(ctx context.Context, in *DeleteUserReques
 	return out, nil
 }
 
-func (c *userServiceClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
-	out := new(ChangePasswordResponse)
-	err := c.cc.Invoke(ctx, "/proto.UserService/ChangePassword", in, out, opts...)
+func (c *userServiceClient) UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error) {
+	out := new(UpdatePasswordResponse)
+	err := c.cc.Invoke(ctx, "/proto.UserService/UpdatePassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ type UserServiceServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
-	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
+	UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
@@ -121,8 +121,8 @@ func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UpdateUserReq
 func (UnimplementedUserServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
-func (UnimplementedUserServiceServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+func (UnimplementedUserServiceServer) UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePassword not implemented")
 }
 func (UnimplementedUserServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
@@ -212,20 +212,20 @@ func _UserService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangePasswordRequest)
+func _UserService_UpdatePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).ChangePassword(ctx, in)
+		return srv.(UserServiceServer).UpdatePassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.UserService/ChangePassword",
+		FullMethod: "/proto.UserService/UpdatePassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
+		return srv.(UserServiceServer).UpdatePassword(ctx, req.(*UpdatePasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -272,8 +272,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_DeleteUser_Handler,
 		},
 		{
-			MethodName: "ChangePassword",
-			Handler:    _UserService_ChangePassword_Handler,
+			MethodName: "UpdatePassword",
+			Handler:    _UserService_UpdatePassword_Handler,
 		},
 		{
 			MethodName: "Login",

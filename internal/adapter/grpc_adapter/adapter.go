@@ -49,7 +49,7 @@ func (i *Implementation) DeleteUser(_ context.Context, req *proto.DeleteUserRequ
 	return &proto.DeleteUserResponse{Code: res.Code, Message: res.Message}, nil
 }
 
-func (i *Implementation) ChangePassword(_ context.Context, req *proto.ChangePasswordRequest) (*proto.ChangePasswordResponse, error) {
-	res := i.userService.ChangePassword(req.GetId(), req.GetPasswords().GetNewPassword(), req.GetPasswords().GetOldPassword())
-	return &proto.ChangePasswordResponse{Code: res.Code, Message: res.Message}, nil
+func (i *Implementation) UpdatePassword(_ context.Context, req *proto.UpdatePasswordRequest) (*proto.UpdatePasswordResponse, error) {
+	res := i.userService.UpdatePassword(req.GetId(), req.GetPasswords().GetNewPassword(), req.GetPasswords().GetOldPassword())
+	return &proto.UpdatePasswordResponse{Code: res.Code, Message: res.Message}, nil
 }

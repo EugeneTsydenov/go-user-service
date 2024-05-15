@@ -11,7 +11,7 @@ type ServiceInterface interface {
 	Register(username, password string) RegisterOutput
 	DeleteUser(id int64) DeleteUserOutput
 	UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput
-	ChangePassword(id int64, newPassword, oldPassword string) ChangePasswordOutput
+	UpdatePassword(id int64, newPassword, oldPassword string) UpdatePasswordOutput
 }
 
 var _ ServiceInterface = (*Service)(nil)

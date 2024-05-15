@@ -8,7 +8,7 @@
       rpc Register(RegisterRequest) returns (RegisterResponse) {}
       rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
       rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
-      rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
+      rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {}
       rpc Login(LoginRequest) returns (LoginResponse) {}
     }
 
@@ -80,12 +80,12 @@
       string message = 2;
     }
 
-    message ChangePasswordRequest {
+    message UpdatePasswordRequest {
       int64 id = 1;
       Passwords passwords = 4;
     }
 
-    message ChangePasswordResponse {
+    message UpdatePasswordResponse {
       int32 code = 1;
       string message = 2;
     }
