@@ -49,6 +49,10 @@ func (repo *Repository) SaveUser(username, hashPassword string) error {
 }
 
 func (repo *Repository) DeleteUser(id int64) error {
+	_, err := repo.GetUserById(id)
+	if err != nil {
+		return err
+	}
 	result := repo.db.Delete(&entity.User{}, "id = ?", id)
 	return result.Error
 }

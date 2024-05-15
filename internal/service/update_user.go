@@ -13,14 +13,14 @@ type UpdateUserOutput struct {
 }
 
 func (s *Service) UpdateUser(request *proto.UpdateUserRequest) UpdateUserOutput {
-	val := reflect.ValueOf(request).Elem()
+	val := reflect.ValueOf(request.UpdatedField).Elem()
 	typ := val.Type()
 	updateData := make(map[string]interface{})
 
 	for i := 0; i < val.NumField(); i++ {
 		fieldValue := val.Field(i)
 		fieldName := typ.Field(i).Name
-		if fieldName == "sizeCache" || fieldName == "unknownFields" || fieldName == "state" || fieldName == "Id" {
+		if fieldName == "sizeCache" || fieldName == "unknownFields" || fieldName == "state" {
 			continue
 		}
 		if fieldValue.Interface() == "" {

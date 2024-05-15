@@ -50,6 +50,6 @@ func (i *Implementation) DeleteUser(_ context.Context, req *proto.DeleteUserRequ
 }
 
 func (i *Implementation) ChangePassword(_ context.Context, req *proto.ChangePasswordRequest) (*proto.ChangePasswordResponse, error) {
-	res := i.userService.ChangePassword(req.GetId(), req.GetNewPassword(), req.GetOldPassword())
+	res := i.userService.ChangePassword(req.GetId(), req.GetPasswords().GetNewPassword(), req.GetPasswords().GetOldPassword())
 	return &proto.ChangePasswordResponse{Code: res.Code, Message: res.Message}, nil
 }
