@@ -50,6 +50,11 @@ func (i *Implementation) DeleteUser(_ context.Context, req *proto.DeleteUserRequ
 }
 
 func (i *Implementation) UpdatePassword(_ context.Context, req *proto.UpdatePasswordRequest) (*proto.UpdatePasswordResponse, error) {
-	res := i.userService.UpdatePassword(req.GetId(), req.GetPasswords().GetNewPassword(), req.GetPasswords().GetOldPassword())
+	res := i.userService.UpdatePassword(req.GetId(), req.Passwords.Old, req.Passwords.New)
 	return &proto.UpdatePasswordResponse{Code: res.Code, Message: res.Message}, nil
+}
+
+func (i *Implementation) GetAllUsers(_ context.Context, req *proto.GetAllUsersRequest) (*proto.GetAllUsersResponse, error) {
+	res := i.userService.GetAllUsers()
+	return &proto.GetAllUsersResponse{Users: res.Users}, nil
 }

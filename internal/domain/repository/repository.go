@@ -12,12 +12,19 @@ type RepoInterface interface {
 	DeleteUser(id int64) error
 	UpdatePassword(id int64, newPassword string) error
 	UpdateUser(userID int64, updateData map[string]interface{}) (*entity.User, error)
+	GetAllUsers() (*[]entity.User, error)
 }
 
 var _ RepoInterface = (*Repository)(nil)
 
 type Repository struct {
 	db *gorm.DB
+}
+
+func (repo *Repository) GetAllUsers() (*[]entity.User, error) {
+	var users []entity.User
+	result := repo.db.Find(&users)
+	return &users, result.Error
 }
 
 func New(db *gorm.DB) *Repository {

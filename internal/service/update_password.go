@@ -9,7 +9,7 @@ type UpdatePasswordOutput struct {
 	Message string
 }
 
-func (s *Service) UpdatePassword(id int64, newPassword, oldPassword string) UpdatePasswordOutput {
+func (s *Service) UpdatePassword(id int64, oldPassword, newPassword string) UpdatePasswordOutput {
 	userFromDB, err := s.repo.GetUserById(id)
 	if err != nil {
 		return UpdatePasswordOutput{Code: 401, Message: "User not found, you cant change password"}

@@ -17,3 +17,16 @@ func ConvertUserDataToProto(userFromDb *entity.UserOutput) *proto.UserData {
 		CreatedAt: timestamppb.New(userFromDb.CreatedAt),
 	}
 }
+
+func ConvertUserEntityToUserOutput(userEntity *entity.User) *entity.UserOutput {
+	if userEntity == nil {
+		return nil
+	}
+
+	return &entity.UserOutput{
+		Id:        userEntity.ID,
+		Username:  userEntity.Username,
+		Avatar:    userEntity.Avatar,
+		CreatedAt: userEntity.CreatedAt,
+	}
+}
